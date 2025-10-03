@@ -1,0 +1,24 @@
+.card {
+  width: 600px;
+  height: 500px;
+}
+
+
+body {
+  font-family: 'Roboto', sans-serif !important;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.nav-link:hover {
+  color: #3d39f3 !important;
+
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Poppins', sans-serif;
+}
