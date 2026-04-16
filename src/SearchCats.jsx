@@ -13,16 +13,25 @@ function SearchCats() {
     const [limit, setLimit] = useState(5);
     const [theme, setTheme] = useState("All");
     const [size, setSize] = useState(512);
-
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const fetchSearchCat = () => {
-        fetch(`https://api.ai-cats.net/v1/cat/search?limit=${limit}&size=${size}&theme=${theme}&descending=false`)
-            .then((response) => response.json())
-            .then((data) => {
-                setCat(data);
-            })
-            .catch((error) => console.error("Error fetching cat:", error));
-    };
+    setLoading(true);
+    setError(null);
+
+    fetch(`https://api.ai-cats.net/v1/cat/search?limit=${limit}&size=${size}&theme=${theme}&descending=false`)
+        .then((response) => response.json())
+        .then((data) => {
+            setCat(data);
+        })
+        .catch(() => {
+            setError("Failed to fetch cats. Please try again.");
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+};
 
 
 
@@ -103,6 +112,9 @@ function SearchCats() {
                     <button type="button" className="btn btn-outline-primary" onClick={fetchSearchCat}>Search</button>
                 </div>
             </form>
+
+            {loading && <div>Loading...</div>}
+            {error && <div style={{ color: "red" }}>{error}</div>}
 
             <div className=" row row-cols-3 g-3 mt-4 text-center d-flex align-items-center">
                 {cat.map((cat, index) => (
