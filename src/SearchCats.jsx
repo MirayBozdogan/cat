@@ -15,7 +15,7 @@ function SearchCats() {
     const [size, setSize] = useState(512);
 
 
-    const fecthSearchCat = () => {
+    const fetchSearchCat = () => {
         fetch(`https://api.ai-cats.net/v1/cat/search?limit=${limit}&size=${size}&theme=${theme}&descending=false`)
             .then((response) => response.json())
             .then((data) => {
@@ -27,7 +27,7 @@ function SearchCats() {
 
 
     useEffect(() => {
-        fecthSearchCat();
+        fetchSearchCat();
 
     }, []);
 
@@ -100,7 +100,7 @@ function SearchCats() {
 
                 </div>
                 <div className="col-auto " style={{ alignSelf: "flex-end" }}>
-                    <button type="button" className="btn btn-outline-primary" onClick={fecthSearchCat}>Search</button>
+                    <button type="button" className="btn btn-outline-primary" onClick={fetchSearchCat}>Search</button>
                 </div>
             </form>
 
